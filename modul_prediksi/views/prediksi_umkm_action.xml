@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="bahan_baku_actions_id" model="ir.actions.act_window">
+        <field name="name">Bahan Baku</field>
+        <field name="res_model">bahan.baku</field>
+    </record>
+    <record id="bahan_baku_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="modul_prediksi.bahan_baku_tree_view_id"/>
+        <field name="act_window_id" ref="modul_prediksi.bahan_baku_actions_id"/>
+    </record>
+    <record id="bahan_baku_actions_kanban_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="modul_prediksi.bahan_baku_kanban_view_id"/>
+        <field name="act_window_id" ref="modul_prediksi.bahan_baku_actions_id"/>
+    </record>
+    <record id="bahan_baku_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="modul_prediksi.bahan_baku_form_view_id"/>
+        <field name="act_window_id" ref="modul_prediksi.bahan_baku_actions_id"/>
+    </record>
+
+    <record id="penggunaan_bahan_actions_id" model="ir.actions.act_window">
+        <field name="name">Penggunaan Bahan</field>
+        <field name="res_model">penggunaan.bahan</field>
+    </record>
+    <record id="penggunaan_bahan_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="modul_prediksi.penggunaan_bahan_tree_view_id"/>
+        <field name="act_window_id" ref="modul_prediksi.penggunaan_bahan_actions_id"/>
+    </record>
+    <record id="penggunaan_bahan_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="modul_prediksi.penggunaan_bahan_form_view_id"/>
+        <field name="act_window_id" ref="modul_prediksi.penggunaan_bahan_actions_id"/>
+    </record>
+
+    <record id="prediksi_semuabahan_wizard_actions_id" model="ir.actions.act_window">
+        <field name="name">Report Prediksi Semua Bahan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prediksi.semuabahan.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="modul_prediksi.prediksi_semuabahan_wizard_report_id"/>
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">No Data</p>
+        </field>
+    </record>
+
+    <record id="prediksi_perbahan_wizard_actions_id" model="ir.actions.act_window">
+        <field name="name">Report Prediksi Per Bahan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prediksi.perbahan.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="modul_prediksi.prediksi_perbahan_wizard_report_id"/>
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">No Data</p>
+        </field>
+    </record>
+
+</odoo>

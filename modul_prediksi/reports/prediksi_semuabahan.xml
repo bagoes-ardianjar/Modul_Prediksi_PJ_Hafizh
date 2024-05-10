@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="semuabahan_template">
+        <t t-call="web.html_container">
+<!--            <t t-call="web.basic_layout">-->
+                    <div class="page">
+                            <header style="width: 100%;">
+                                <div style="text-align:left;">
+                                    <p style="font-size: 19px;">
+                                        <span><b>UMKM Permak dan Jahit Hafizh</b></span>
+                                    </p>
+                                    <p style="margin-top: -15px; ">
+                                        <span style="font-size:12px;">Sendangguwo RT15/RW01 Kec. Tembalang, Kota Semarang</span>
+                                    </p>
+                                    <hr size="2" width="100%" color="black"></hr>
+                                </div>
+
+                                <div style="text-align:center;">
+                                    <p>
+                                        <span style="font-size:19px;"><b>Laporan Prediksi Penggunaan Bahan Bulan Depan</b></span>
+                                    </p>
+                                </div>
+                            </header>
+                            <body style="margin-top: 70px; margin-bottom: 20px; padding: 40px;">
+                                <table style="width: 100%; border-collapse: collapse; border: 0.5px solid black;">
+                                    <tr style="text-align:left; background-color: #dddddd; vertical-align : middle;">
+                                        <th style="border:0.5px solid black;font-weight:bold;width:10%; text-align:center;">
+                                            Bulan
+                                        </th>
+                                        <th style="border:0.5px solid black;font-weight:bold;width:10%; text-align:center;">
+                                            Tahun
+                                        </th>
+                                        <th style="border:0.5px solid black;font-weight:bold;width:20%; text-align:center;">
+                                            Bahan Baku
+                                        </th>
+                                        <th style="border:0.5px solid black;font-weight:bold;width:15%; text-align:center;">
+                                            Qty Prediksi
+                                        </th>
+                                        <th style="border:0.5px solid black;font-weight:bold;width:10%; text-align:center;">
+                                            UoM
+                                        </th>
+                                        <th style="border:0.5px solid black;font-weight:bold;width:15%; text-align:center;">
+                                            MAPE
+                                        </th>
+                                        <th style="border:0.5px solid black;font-weight:bold;width:20%; text-align:center;">
+                                            Keterangan
+                                        </th>
+                                    </tr>
+                                    <tr t-foreach="docs" t-as="docs">
+                                        <td style="border:0.5px solid black;text-align: center;">
+                                            <span t-esc="docs.get('bulan')"/>
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center;">
+                                            <span t-esc="docs.get('tahun')"/>
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: left;">
+                                            <span t-esc="docs.get('bahan_baku')"/>
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center;">
+                                            <span t-esc="docs.get('qty')"/>
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center;">
+                                            <span t-esc="docs.get('uom')"/>
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center;">
+                                            <span t-esc="docs.get('mape')"/> %
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center;">
+                                            <span t-esc="docs.get('keterangan')"/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:0.5px solid black;text-align: center;">
+                                        <td style="border:0.5px solid black;text-align: center; font-weight:bold;" colspan="5">
+                                            <span>Rata-rata MAPE</span>
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center; font-weight:bold;">
+                                            <span t-esc="average_mape"/> %
+                                        </td>
+                                        <td style="border:0.5px solid black;text-align: center; font-weight:bold;">
+                                            <span t-esc="keterangan_average_mape"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </body>
+
+                            <footer style="width: 100%; text-align: left; padding-left: 20px;">
+                                <p style="font-size: 14px;">
+                                    <span>Permak &amp; Jahit Hafizh (+62 831-2003-3449)</span>
+                                </p>
+                            </footer>
+                    </div>
+<!--            </t>-->
+        </t>
+    </template>
+</odoo>

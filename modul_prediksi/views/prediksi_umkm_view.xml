@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="bahan_baku_tree_view_id" model="ir.ui.view">
+        <field name="name">bahan_baku_tree_view_id</field>
+        <field name="model">bahan.baku</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="uom"/>
+            </tree>
+        </field>
+    </record>
+    <record id="bahan_baku_kanban_view_id" model="ir.ui.view">
+        <field name="name">bahan_baku_kanban_view_id</field>
+        <field name="model">bahan.baku</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="uom"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb16">
+                                <strong>
+                                    <span><t t-esc="record.name.value"/></span>
+                                </strong>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <span><t t-esc="record.name.value"/></span>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <span><t t-esc="record.uom.value"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="bahan_baku_form_view_id" model="ir.ui.view">
+        <field name="name">bahan_baku_form_view_id</field>
+        <field name="model">bahan.baku</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <strong>Input Bahan Baku</strong>
+                                <field name="name" />
+                                <field name="uom"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+    <record id="penggunaan_bahan_tree_view_id" model="ir.ui.view">
+        <field name="name">penggunaan_bahan_tree_view_id</field>
+        <field name="model">penggunaan.bahan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="tanggal_input"/>
+                <field name="admin"/>
+            </tree>
+        </field>
+    </record>
+    <record id="penggunaan_bahan_form_view_id" model="ir.ui.view">
+        <field name="name">penggunaan_bahan_form_view_id</field>
+        <field name="model">penggunaan.bahan</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <strong>Input Penggunaan Bahan</strong>
+                                <field name="name"/>
+                                <field name="tanggal_input"/>
+                                <field name="admin"/>
+<!--                                options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>-->
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Data Penggunaan Bahan">
+                                <field name="penggunaan_bahan_ids" nolabel="1" options="{'reload_on_button':True}">
+                                    <tree edit="true" editable="bottom" create="true" delete="true">
+                                        <field name="bulan" readonly="1"/>
+                                        <field name="tahun" readonly="1"/>
+                                        <field name="bahan_baku"/>
+                                        <field name="qty"/>
+                                        <field name="uom"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+        </field>
+    </record>
+
+    <record id="prediksi_semuabahan_wizard_report_id" model="ir.ui.view">
+        <field name="name">prediksi_semuabahan_wizard_report_id</field>
+        <field name="model">prediksi.semuabahan.report.wizard</field>
+        <field name="priority">9</field>
+        <field name="arch" type="xml">
+            <form string="Report Prediksi Penggunaan Semua Bahan">
+                <sheet>
+                    <group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" name="func_print_semuabahan_pdf" string="Preview" class="btn-primary"/>
+                    <button type="object" name="func_print_semuabahan_excel" string="Print Excel" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="prediksi_perbahan_wizard_report_id" model="ir.ui.view">
+        <field name="name">prediksi_perbahan_wizard_report_id</field>
+        <field name="model">prediksi.perbahan.report.wizard</field>
+        <field name="priority">9</field>
+        <field name="arch" type="xml">
+            <form string="Report Prediksi Penggunaan Per Bahan">
+                <sheet>
+                    <group>
+                        <field name="bahan_baku" string="Bahan Baku *" required="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" name="func_print_perbahan_pdf" string="Preview" class="btn-primary"/>
+                    <button type="object" name="func_print_perbahan_excel" string="Print Excel" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+    <menuitem
+        id="parent_prediksi_umkm_id"
+        name="Modul Prediksi UMKM Hafizh"
+        web_icon="modul_prediksi,static/description/mesin.jpg"
+        sequence="10"/>
+        <menuitem
+            id="child_bahan_baku_id"
+            name="Bahan Baku"
+            sequence="1"
+            parent="modul_prediksi.parent_prediksi_umkm_id"
+            action="modul_prediksi.bahan_baku_actions_id"/>
+        <menuitem
+            id="child_penggunaan_bahan_id"
+            name="Penggunaan Bahan"
+            sequence="1"
+            parent="modul_prediksi.parent_prediksi_umkm_id"
+            action="modul_prediksi.penggunaan_bahan_actions_id"/>
+        <menuitem
+            id="child_prediction_report_wizard_id"
+            name="Report Prediksi"
+            sequence="1"
+            parent="modul_prediksi.parent_prediksi_umkm_id"/>
+            <menuitem
+                id="child_prediksi_semuabahan_wizard_id"
+                name="Prediksi Semua Bahan"
+                sequence="1"
+                parent="modul_prediksi.child_prediction_report_wizard_id"
+                action="modul_prediksi.prediksi_semuabahan_wizard_actions_id"/>
+            <menuitem
+                id="child_prediksi_perbahan_wizard_id"
+                name="Prediksi Per Bahan"
+                sequence="2"
+                parent="modul_prediksi.child_prediction_report_wizard_id"
+                action="modul_prediksi.prediksi_perbahan_wizard_actions_id"/>
+</odoo>
