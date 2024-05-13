@@ -65,7 +65,7 @@
         <field name="model">penggunaan.bahan</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
+                <field name="name" string="Nomor Transaksi"/>
                 <field name="tanggal_input"/>
                 <field name="admin"/>
             </tree>
@@ -80,7 +80,7 @@
                         <group>
                             <group>
                                 <strong>Input Penggunaan Bahan</strong>
-                                <field name="name"/>
+                                <field name="name" string="Nomor Transaksi"/>
                                 <field name="tanggal_input"/>
                                 <field name="admin"/>
 <!--                                options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>-->

@@ -3,7 +3,6 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import ValidationError
 
-
 def get_nama_bulan(number_of_month):
     if number_of_month == 1:
         bulan_name = 'January'
@@ -43,13 +42,13 @@ class penggunaan_bahan(models.Model):
     _name = 'penggunaan.bahan'
 
     def func_delete_data(self):
-        delete_data = "delete from penggunaan_bahan where (extract(year from CURRENT_DATE) - EXTRACT(YEAR FROM tanggal_input)) > 5"
+        delete_data = "delete from penggunaan_bahan where (extract(year from CURRENT_DATE) - EXTRACT(YEAR FROM tanggal_input)) > 10"
         self._cr.execute(delete_data)
         self._cr.commit()
 
         delete_data_line = "delete from penggunaan_bahan_line where id in (select a.id from penggunaan_bahan_line a " \
                       "join penggunaan_bahan b on b.id = a.penggunaan_bahan_id " \
-                      "where (extract(year from CURRENT_DATE) - EXTRACT(YEAR FROM b.tanggal_input)) > 5)"
+                      "where (extract(year from CURRENT_DATE) - EXTRACT(YEAR FROM b.tanggal_input)) > 10)"
         self._cr.execute(delete_data_line)
         self._cr.commit()
         return True
@@ -70,6 +69,23 @@ class penggunaan_bahan(models.Model):
         for rec in res:
             seq = self.env['ir.sequence'].next_by_code('penggunaan.bahan') or 'New'
             rec.name = seq
+            list_line = []
+            for line in rec.penggunaan_bahan_ids:
+                if line.bahan_baku.id not in list_line:
+                    list_line.append(line.bahan_baku.id)
+                else:
+                    raise ValidationError(_("Anda tidak dapat menginput bahan baku yang sama lebih dari satu line !"))
+        return res
+
+    def write(self, vals):
+        res = super(penggunaan_bahan, self).write(vals)
+        if 'penggunaan_bahan_ids' in vals:
+            list_line = []
+            for line in self.penggunaan_bahan_ids:
+                if line.bahan_baku.id not in list_line:
+                    list_line.append(line.bahan_baku.id)
+                else:
+                    raise ValidationError(_("Anda tidak dapat menginput bahan baku yang sama lebih dari satu line !"))
         return res
 
     name = fields.Char(string="Name", default="New")
@@ -366,6 +382,7 @@ class prediksi_perbahan_report_wizard_line(models.TransientModel):
     qty = fields.Float(string='Qty Prediksi')
     uom = fields.Char(string='UoM')
     mape = fields.Float(string='MAPE')
+    keterangan = fields.Char(string='Keterangan')
 
 class prediksi_perbahan_template_pdf(models.AbstractModel):
     _name = 'report.modul_prediksi.perbahan_template'
